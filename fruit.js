@@ -70,7 +70,25 @@ module.exports = (function () {
       adapter.update
     }
     
-    this.remove = adapter.remove
+    this.delete = function (tocName) {
+      return {
+        where : function (condition) {
+          var deferred = defer();
+          _adapter.delete(tocName, condition, getResponseHandler(deferred));
+          return deferred.getPromise();
+        }
+      }
+    }
+    
+    this.deleteAll = function (tocName) {
+      return {
+        where : function (condition) {
+          var deferred = defer();
+          _adapter.deleteAll(tocName, condition, getResponseHandler(deferred));
+          return deferred.getPromise();
+        }
+      }
+    }
     
   }
   
