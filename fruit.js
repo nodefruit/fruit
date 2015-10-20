@@ -40,7 +40,35 @@ module.exports = (function () {
       return deferred.getPromise();
     }
     
-    this.update = adapter.update
+    this.update = function (tocName) {
+      return {
+        set : function (data) {
+          return {
+            where : function (condition) {
+              var deferred = defer();
+              _adapter.update(tocName, data, condition, getResponseHandler(deferred));
+              return deferred.getPromise();
+            }
+          }
+        }
+      }
+      adapter.update
+    }
+    
+    this.updateAll = function (tocName) {
+      return {
+        set : function (data) {
+          return {
+            where : function (condition) {
+              var deferred = defer();
+              _adapter.updateAll(tocName, data, condition, getResponseHandler(deferred));
+              return deferred.getPromise();
+            }
+          }
+        }
+      }
+      adapter.update
+    }
     
     this.remove = adapter.remove
     
