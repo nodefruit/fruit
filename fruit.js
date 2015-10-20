@@ -14,16 +14,24 @@ module.exports = (function () {
       }
     }
     
-    this.insert = function (tocName, data) {
-      var deferred = defer();
-      _adapter.insert(tocName, data, getResponseHandler(deferred))
-      return deferred.getPromise();
+    this.insert = function (data) {
+      return {
+        into : function (tocName) {
+          var deferred = defer();
+          _adapter.insert(tocName, data, getResponseHandler(deferred));
+          return deferred.getPromise();
+        }
+      }
     }
     
-    this.find = function (tocName, condition) {
-      var deferred = defer();
-      _adapter.find(tocName, condition, getResponseHandler(deferred));
-      return deferred.getPromise();
+    this.find = function (condition) {
+      return {
+        from : function (tocName) {
+          var deferred = defer();
+          _adapter.find(tocName, condition, getResponseHandler(deferred));
+          return deferred.getPromise();
+        }
+      }
     }
     
     this.findAll = function (tocName) {
