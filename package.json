@@ -7,5 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Khalid REHIOUI <Array.prototype@gmail.com> (http://github.com/javascipt)",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "q": "^1.4.1"
+  }
 }
