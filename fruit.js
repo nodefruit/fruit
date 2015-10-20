@@ -7,7 +7,7 @@ module.exports = (function () {
     
     var _adapter = adapter;
     
-    function getCallBack (deferred) {
+    function getResponseHandler (deferred) {
       return function (err, result) {
         if(err) deferred.reject(err);
         else deferred.resolve(result);
@@ -16,23 +16,23 @@ module.exports = (function () {
     
     this.insert = function (tocName, data) {
       var deferred = defer();
-      _adapter.insert(tocName, data, getCallBack(deferred))
+      _adapter.insert(tocName, data, getResponseHandler(deferred))
       return deferred.getPromise();
     }
     
     this.find = function (tocName, condition) {
       var deferred = defer();
-      _adapter.find(tocName, condition, getCallBack(deferred));
+      _adapter.find(tocName, condition, getResponseHandler(deferred));
       return deferred.getPromise();
     }
     
     this.findAll = function (tocName) {
       var deferred = defer();
-      _adapter.findAll(tocName, getCallBack(deferred));
+      _adapter.findAll(tocName, getResponseHandler(deferred));
       return deferred.getPromise();
     }
     
-    this.update   = adapter.update
+    this.update = function (tocNameadapter.update
     
     this.remove   = adapter.remove
     
