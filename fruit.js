@@ -32,9 +32,9 @@ module.exports = (function () {
       return deferred.getPromise();
     }
     
-    this.update = function (tocNameadapter.update
+    this.update = adapter.update
     
-    this.remove   = adapter.remove
+    this.remove = adapter.remove
     
   }
   
