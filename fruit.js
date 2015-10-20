@@ -52,7 +52,6 @@ module.exports = (function () {
           }
         }
       }
-      adapter.update
     }
     
     this.updateAll = function (tocName) {
@@ -67,7 +66,6 @@ module.exports = (function () {
           }
         }
       }
-      adapter.update
     }
     
     this.delete = function (tocName) {
