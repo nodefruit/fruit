@@ -34,6 +34,16 @@ module.exports = (function () {
       }
     }
     
+    this.findOne = function (condition) {
+      return {
+        from : function (tocName) {
+          var deferred = defer();
+          _adapter.findOne(tocName, condition, getResponseHandler(deferred));
+          return deferred.getPromise();
+        }
+      }
+    }
+    
     this.findAll = function (tocName) {
       var deferred = defer();
       _adapter.findAll(tocName, getResponseHandler(deferred));
