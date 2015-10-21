@@ -53,11 +53,15 @@ module.exports = (function () {
     this.update = function (tocName) {
       return {
         set : function (data) {
+          function _update (condition) {
+            var deferred = defer();
+            _adapter.update(tocName, data, condition, getResponseHandler(deferred));
+            return deferred.getPromise();
+          }
           return {
-            where : function (condition) {
-              var deferred = defer();
-              _adapter.update(tocName, data, condition, getResponseHandler(deferred));
-              return deferred.getPromise();
+            where : _update,
+            any   : function () {
+              return _update({})
             }
           }
         }
@@ -66,12 +70,16 @@ module.exports = (function () {
     
     this.updateAll = function (tocName) {
       return {
-        set : function (data) {
+        set : function (data) { 
+          function _update (condition) {
+            var deferred = defer();
+            _adapter.updateAll(tocName, data, condition, getResponseHandler(deferred));
+            return deferred.getPromise();
+          }
           return {
-            where : function (condition) {
-              var deferred = defer();
-              _adapter.updateAll(tocName, data, condition, getResponseHandler(deferred));
-              return deferred.getPromise();
+            where : _update,
+            any   : function () {
+              return _update({})
             }
           }
         }
@@ -79,21 +87,29 @@ module.exports = (function () {
     }
     
     this.delete = function (tocName) {
+      function _delete (condition) {
+        var deferred = defer();
+        _adapter.delete(tocName, condition, getResponseHandler(deferred));
+        return deferred.getPromise();
+      }
       return {
-        where : function (condition) {
-          var deferred = defer();
-          _adapter.delete(tocName, condition, getResponseHandler(deferred));
-          return deferred.getPromise();
+        where : _delete,
+        any   : function () {
+          return _delete({});
         }
       }
     }
     
     this.deleteAll = function (tocName) {
+      function _delete (condition) {
+        var deferred = defer();
+        _adapter.deleteAll(tocName, condition, getResponseHandler(deferred));
+        return deferred.getPromise();
+      }
       return {
-        where : function (condition) {
-          var deferred = defer();
-          _adapter.deleteAll(tocName, condition, getResponseHandler(deferred));
-          return deferred.getPromise();
+        where : _delete,
+        any   : function () {
+          return _delete({});
         }
       }
     }
