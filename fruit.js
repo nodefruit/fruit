@@ -17,10 +17,18 @@ module.exports = (function () {
     }
     
     this.insert = function (data) {
+      var fruitReference = this;
       return {
         into : function (tocName) {
+          function formatResults (results) {
+            for(var index in results.data) {
+              var Model = modelFactory();
+              results.data[index] = new Model(results.data[index], tocName, fruitReference);
+            }
+            return results;
+          }
           var deferred = defer();
-          _adapter.insert(tocName, data, getResponseHandler(deferred));
+          _adapter.insert(tocName, data, getResponseHandler(deferred, formatResults));
           return deferred.getPromise();
         }
       }
