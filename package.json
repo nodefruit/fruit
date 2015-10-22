@@ -9,6 +9,7 @@
   "author": "Khalid REHIOUI <Array.prototype@gmail.com> (http://github.com/javascipt)",
   "license": "MIT",
   "dependencies": {
+    "fishbone": "^1.0.1",
     "q": "^1.4.1"
   }
 }

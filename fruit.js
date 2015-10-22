@@ -1,16 +1,18 @@
 /* بسم الله الرحمن الرحيم */
 
 module.exports = (function () {
-  var defer = require('./lib/defer');
+  var defer         = require('./lib/defer')
+    , modelFactory  = require('./lib/model-factory')
   
   function Fruit (adapter) {
     
-    var _adapter = adapter;
+    var _adapter      = adapter;
+    this.adapterType  = adapter.type
     
-    function getResponseHandler (deferred) {
+    function getResponseHandler (deferred, formatResults) {
       return function (err, result) {
         if(err) deferred.reject(err);
-        else deferred.resolve(result);
+        else deferred.resolve(formatResults ? formatResults(result) : result);
       }
     }
     
@@ -25,28 +27,49 @@ module.exports = (function () {
     }
     
     this.find = function (condition) {
+      var fruitReference = this;
       return {
         from : function (tocName) {
+          function formatResults (results) {
+            for(var index in results) {
+              var Model = modelFactory();
+              results[index] = new Model(results[index], tocName, fruitReference);
+            }
+            return results;
+          }
           var deferred = defer();
-          _adapter.find(tocName, condition, getResponseHandler(deferred));
+          _adapter.find(tocName, condition, getResponseHandler(deferred, formatResults));
           return deferred.getPromise();
         }
       }
     }
     
     this.findOne = function (condition) {
+      var fruitReference = this;
       return {
         from : function (tocName) {
+          var Model = modelFactory();
+          function formatResult (result) {
+            return new Model(result, tocName, fruitReference)
+          }
           var deferred = defer();
-          _adapter.findOne(tocName, condition, getResponseHandler(deferred));
+          _adapter.findOne(tocName, condition, getResponseHandler(deferred, formatResult));
           return deferred.getPromise();
         }
       }
     }
     
     this.findAll = function (tocName) {
+      var fruitReference = this;
+      function formatResults (results) {
+        for(var index in results) {
+          var Model = modelFactory();
+          results[index] = new Model(results[index], tocName, fruitReference);
+        }
+        return results;
+      }
       var deferred = defer();
-      _adapter.findAll(tocName, getResponseHandler(deferred));
+      _adapter.findAll(tocName, getResponseHandler(deferred, formatResults));
       return deferred.getPromise();
     }
     
