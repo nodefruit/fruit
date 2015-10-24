@@ -10,6 +10,7 @@
   "license": "MIT",
   "dependencies": {
     "fishbone": "^1.0.1",
+    "jsome": "^2.3.10",
     "q": "^1.4.1"
   }
 }
