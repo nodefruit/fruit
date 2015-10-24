@@ -16,12 +16,12 @@ module.exports = (function () {
       }
     }
     
-    this.insert = function (data) {
+    this.insert = function (data, multipleIds) {
       var fruitReference = this;
       return {
         into : function (tocName) {
           var deferred = defer();
-          _adapter.insert(tocName, data, getResponseHandler(deferred));
+          _adapter.insert(tocName, data, getResponseHandler(deferred), multipleIds);
           return deferred.getPromise();
         }
       }
