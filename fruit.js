@@ -84,8 +84,11 @@ module.exports = (function () {
           }
           return {
             where : _update,
-            any   : function () {
-              return _update({})
+            success : function (callBack) {
+              return _update({}).success(callBack);
+            },
+            error : function (callBack) {
+              return _update({}).error(callBack);
             }
           }
         }
@@ -102,8 +105,11 @@ module.exports = (function () {
           }
           return {
             where : _update,
-            any   : function () {
-              return _update({})
+            success : function (callBack) {
+              return _update({}).success(callBack);
+            },
+            error : function (callBack) {
+              return _update({}).error(callBack);
             }
           }
         }
@@ -118,8 +124,11 @@ module.exports = (function () {
       }
       return {
         where : _delete,
-        any   : function () {
-          return _delete({});
+        success : function (callBack) {
+          return _delete({}).success(callBack);
+        },
+        error : function (callBack) {
+          return _delete({}).error(callBack);
         }
       }
     }
@@ -132,8 +141,11 @@ module.exports = (function () {
       }
       return {
         where : _delete,
-        any   : function () {
-          return _delete({});
+        success : function (callBack) {
+          return _delete({}).success(callBack);
+        },
+        error : function (callBack) {
+          return _delete({}).error(callBack);
         }
       }
     }
