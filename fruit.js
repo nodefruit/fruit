@@ -138,6 +138,23 @@ module.exports = (function () {
       }
     }
     
+    this.count = function (tocName) {
+      function _count (condition) {
+        var deferred = defer();
+        _adapter.count(tocName, condition, getResponseHandler(deferred));
+        return deferred.getPromise();
+      }
+      return {
+        where : _count,
+        success : function (callBack) {
+          return _count({}).success(callBack);
+        },
+        error : function (callBack) {
+          return _count({}).error(callBack);
+        }
+      }
+    }
+    
   }
   
   return Fruit;
