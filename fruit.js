@@ -16,6 +16,20 @@ module.exports = (function () {
       }
     }
     
+    this.connect = function (config) {
+      var deferred = defer();
+      _adapter.connect(config, function(err) {
+        if(err) deferred.reject(err);
+        else  deferred.resolve();
+      });
+      return deferred.getPromise();
+    }
+    
+    this.config = function (config) {
+      _adapter.config(config);
+      return this;
+    }
+    
     this.insert = function (data, multipleIds) {
       var fruitReference = this;
       return {
