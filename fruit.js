@@ -43,6 +43,7 @@ module.exports = (function () {
     
     this.find = function (condition) {
       var fruitReference = this;
+      var _limit, _offset;
       return {
         from : function (tocName) {
           function formatResults (results) {
@@ -52,9 +53,25 @@ module.exports = (function () {
             }
             return results;
           }
-          var deferred = defer();
-          _adapter.find(tocName, condition, getResponseHandler(deferred, formatResults));
-          return deferred.getPromise();
+          function _find () {
+            var deferred = defer();
+            _adapter.find(tocName, condition, getResponseHandler(deferred, formatResults), _limit, _offset);
+            return deferred.getPromise();
+          }
+          return obectToReturn = {
+            limit   : function (limit) { 
+              _limit = limit; return this; 
+            },
+            offset  : function (offset) { 
+              _offset = offset; return this; 
+            },
+            success : function (callBack) { 
+              return _find().success(callBack); 
+            },
+            error   : function (callBack) { 
+              return _find().error(callBack); 
+            }
+          };
         }
       }
     }
