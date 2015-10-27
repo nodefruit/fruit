@@ -1,6 +1,6 @@
 var assert      = require('assert')
   , Fruit       = require('..')
-  , testAdapter = require('../lib/testAdapter')
+  , testAdapter = require('./testAdapter')
 
 
 describe('successful connection' , function () {

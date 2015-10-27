@@ -4,7 +4,7 @@
   "description": "",
   "main": "fruit.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha ./test/test.js"
   },
   "author": "Khalid REHIOUI <Array.prototype@gmail.com> (http://github.com/javascipt)",
   "license": "MIT",
