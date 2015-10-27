@@ -4,7 +4,7 @@
   "description": "",
   "main": "fruit.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "Khalid REHIOUI <Array.prototype@gmail.com> (http://github.com/javascipt)",
   "license": "MIT",
