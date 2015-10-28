@@ -14,6 +14,21 @@ module.exports = (function () {
       return this;
     }
     
+    this.insert = function (tocName, data, callBack) {
+      if(tocName === 'unknown') {
+        callBack(new TypeError('table not found'))
+      } else {
+        if(typeof data !== 'object') {
+          callBack(new TypeError('incorrect data'))
+        } else {
+          callBack(null, {
+              tocName : tocName
+            , data    : data
+          });
+        }
+      }
+    }
+    
   }
   
   return new dataManager;

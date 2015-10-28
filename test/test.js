@@ -4,12 +4,11 @@ var assert      = require('assert')
 
 
 describe('successful connection' , function () {
-  
   var success = false
     , error   = false;
 
   beforeEach(function(done) {  
-    var fruit   = new Fruit(testAdapter)
+    var fruit = new Fruit(testAdapter)
     , options = {
         host      : 'testhost'
       , database  : 'testdb'
@@ -24,14 +23,13 @@ describe('successful connection' , function () {
       }).error(function (err) {
         error = true;
         done();
-      })
+      });
   });
   
   it('should get connected', function () {
     assert.equal(success, true);
     assert.equal(error, false);
   });
-
 });
 
 describe('failed connection' , function () {
@@ -39,7 +37,7 @@ describe('failed connection' , function () {
     , error   = false;
 
   beforeEach(function(done) {  
-    var fruit   = new Fruit(testAdapter)
+    var fruit = new Fruit(testAdapter)
     , options = {
         ghost     : 'testhost'
       , fakedb    : 'testdb'
@@ -54,11 +52,41 @@ describe('failed connection' , function () {
       }).error(function (err) {
         error = true;
         done();
-      })
+      });
   });
   
   it('should not get connected', function () {
     assert.equal(success, false);
     assert.equal(error, true);
   });
-})
+});
+
+describe('insert into table successfully', function () {
+  var results = {}
+    , error   = null
+    , tocName = 'users'
+    , data    = {
+        name  : 'khalid'
+      , age   : 26
+    };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.insert(data)
+      .into(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should insert successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(results.data, data);
+    assert.equal(error, null);
+  })
+});
