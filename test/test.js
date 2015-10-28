@@ -182,3 +182,180 @@ describe('failed insertion into not exisiting table/collection', function () {
     assert.equal(typeof error, 'object');
   })
 });
+
+describe('successful find query with name and age as conditions', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , condition = {
+        name  : 'khalid'
+      , age   : 26
+    };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.find(condition)
+      .from(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should find successfully', function () {
+    results.forEach(function (result) {
+      assert.equal(result.name, condition.name);
+      assert.equal(result.age, condition.age);
+    })
+    assert.equal(error, null);
+  })
+});
+
+describe('successful find query with only age as condition', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , condition = {
+      age   : 26
+    };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.find(condition)
+      .from(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should find successfully', function () {
+    results.forEach(function (result) {
+      assert.equal(result.age, condition.age);
+    })
+    assert.equal(error, null);
+  })
+});
+
+describe('successful find query with limit', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , condition = {
+      age   : 26
+    };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.find(condition)
+      .from(tocName)
+      .limit(1)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should find successfully', function () {
+    assert.equal(results.length, 1);
+    assert.equal(results[0].name, 'khalid');
+    assert.equal(error, null);
+  })
+});
+
+describe('successful find query with limit and offset', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , condition = {
+      age   : 26
+    };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.find(condition)
+      .from(tocName)
+      .limit(1)
+      .offset(1)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should find successfully', function () {
+    assert.equal(results.length, 1);
+    assert.equal(results[0].name, 'Abdullah');
+    assert.equal(error, null);
+  })
+});
+
+describe('successful findAll query', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user';
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.findAll(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should find successfully', function () {
+    assert.equal(results.length, 2);
+    assert.equal(error, null);
+  })
+});
+
+describe('successful findOne query', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , condition = {
+        name  : 'khalid'
+      , age   : 26
+    };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.findOne(condition)
+      .from(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should find successfully', function () {
+    assert.equal(results.name, condition.name);
+    assert.equal(results.age, condition.age);
+    assert.equal(error, null);
+  })
+});

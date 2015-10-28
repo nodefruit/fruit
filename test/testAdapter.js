@@ -34,6 +34,53 @@ module.exports = (function () {
       }
     }
     
+    this.find = function (tocName, condition, callBack, limit, offset) {
+      var data = [
+        {
+            id   : 1
+          , name : 'khalid'
+          , age  : 26
+        },
+        {
+            id   : 2
+          , name : 'Abdullah'
+          , age  : 26
+        }
+      ]
+      if(tocName === 'unknown') {
+        callBack(new TypeError('table not found'))
+      } else {
+        if(typeof condition !== 'object') {
+          callBack(new TypeError('incorrect data'))
+        } else {
+          if(limit !== undefined && isNaN(Number(limit))) {
+            return callBack(new TypeError ("Incorrect limit argument"))
+          }
+          if(offset !== undefined && isNaN(Number(offset))) {
+            return callBack(new TypeError ("Incorrect offset argument"))
+          }
+          var results = data.filter(function (item) {
+            return condition.name && condition.age && item.name == condition.name && item.age == condition.age
+              || condition.name && !condition.age && item.name == condition.name
+              || !condition.name && condition.age && item.age == condition.age
+              || JSON.stringify(condition) == '{}'
+          })
+          callBack(null, results.slice(offset, limit && ((offset || 0) + limit)));
+        }
+      }
+    }
+    
+    this.findOne = function (tocName, condition, callBack) {
+      this.find(tocName, condition, function (err, results) {
+        if(results) results = results.shift();
+        callBack(err, results);
+      }, 1, 0);
+    }
+    
+    this.findAll = function (tocName, callBack) {
+      this.find(tocName, {}, callBack);
+    }
+    
   }
   
   return new dataManager;
