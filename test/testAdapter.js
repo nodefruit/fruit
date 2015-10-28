@@ -1,5 +1,10 @@
 /* بسم الله الرحمن الرحيم */
 
+/* 
+    This is just a fake adapter, it doesn't insert/find/update/delete
+    Its role is just testing arguments passed from the fruit instance
+*/
+
 module.exports = (function () {
   
   var config = {};
