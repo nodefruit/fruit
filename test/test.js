@@ -61,7 +61,7 @@ describe('failed connection' , function () {
   });
 });
 
-describe('insert into table successfully', function () {
+describe('insert into table/collection successfully', function () {
   var results = {}
     , error   = null
     , tocName = 'users'
@@ -69,6 +69,42 @@ describe('insert into table successfully', function () {
         name  : 'khalid'
       , age   : 26
     };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.insert(data)
+      .into(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should insert successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(results.data, data);
+    assert.equal(error, null);
+  })
+});
+
+describe('insert many records/documents into table/collection successfully', function () {
+  var results = {}
+    , error   = null
+    , tocName = 'users'
+    , data    = [
+      {
+          name  : 'khalid'
+        , age   : 26
+      },
+      {
+          name  : 'Abdullah'
+        , age   : 26
+      }
+    ];
   
   beforeEach(function (done) {
     var fruit = new Fruit(testAdapter);
