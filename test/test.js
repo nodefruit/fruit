@@ -126,3 +126,59 @@ describe('insert many records/documents into table/collection successfully', fun
     assert.equal(error, null);
   })
 });
+
+
+describe('failed insertion due to incorrect data', function () {
+  var results = null
+    , error   = null
+    , tocName = 'users'
+    , data    = ' ?? ';
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.insert(data)
+      .into(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should not insert', function () {
+    assert.equal(results, null);
+    assert.equal(typeof error, 'object');
+  })
+});
+
+describe('failed insertion into not exisiting table/collection', function () {
+  var results = null
+    , error   = null
+    , tocName = 'unknown'
+    , data    = {
+        name  : 'khalid'
+      , age   : 26
+    };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.insert(data)
+      .into(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should not insert', function () {
+    assert.equal(results, null);
+    assert.equal(typeof error, 'object');
+  })
+});
