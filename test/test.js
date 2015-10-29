@@ -524,5 +524,32 @@ describe('unsuccessful update query due to inexisting table/collection', functio
   it('should not update', function () {
     assert.equal(results, null);
     assert.equal(error, true);
-  })
-})
+  });
+});
+
+describe('successful delete query', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , condition = { name : 'khalid' };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.delete(tocName)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should delete successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(results.condition, condition);
+    assert.equal(error, null);
+  });
+});
