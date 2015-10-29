@@ -572,8 +572,61 @@ describe('successful delete query without condition', function () {
       });
   });
   
-  it('should update successfully', function () {
+  it('should delete successfully', function () {
     assert.equal(results.tocName, tocName);
     assert.equal(error, null);
+  });
+});
+
+describe('unsuccessful delete query due to incorrect condition type', function () {
+  var results   = null
+    , error     = false
+    , tocName   = 'user'
+    , condition = ' *** ';
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.delete(tocName)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should not delete', function () {
+    assert.equal(results, null);
+    assert.equal(error, true);
+  })
+})
+
+
+describe('unsuccessful deleye query due to inexisting table/collection', function () {
+  var results   = null
+    , error     = false
+    , tocName   = 'person'
+    , condition = { name : 'khalid' };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.delete(tocName)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should not delete', function () {
+    assert.equal(results, null);
+    assert.equal(error, true);
   });
 });
