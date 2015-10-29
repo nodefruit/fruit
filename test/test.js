@@ -442,7 +442,6 @@ describe('successful update query', function () {
     assert.equal(results.condition, condition);
     assert.equal(error, null);
   })
-  
 })
 
 describe('successful update query without condition', function () {
@@ -470,5 +469,60 @@ describe('successful update query without condition', function () {
     assert.equal(results.data, data);
     assert.equal(error, null);
   })
+})
+
+describe('unsuccessful update query due to incorrect data', function () {
+  var results   = null
+    , error     = false
+    , tocName   = 'user'
+    , condition = ' *** '
+    , data      = ' *** ';
   
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.update(tocName)
+      .set(data)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should not update', function () {
+    assert.equal(results, null);
+    assert.equal(error, true);
+  })
+})
+
+describe('unsuccessful update query due to inexisting table/collection', function () {
+  var results   = null
+    , error     = false
+    , tocName   = 'hallo'
+    , condition = { name : 'khalid' }
+    , data      = { name : 'Abdullah' };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.update(tocName)
+      .set(data)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should not update', function () {
+    assert.equal(results, null);
+    assert.equal(error, true);
+  })
 })
