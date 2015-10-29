@@ -359,3 +359,57 @@ describe('successful findOne query', function () {
     assert.equal(error, null);
   })
 });
+
+describe('failed find query', function () {
+  var success   = false
+    , error     = false
+    , tocName   = 'persons'
+    , condition = {
+      age   : 26
+    };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.find(condition)
+      .from(tocName)
+      .success(function (rst) {
+        success = true;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should fail due to inexisting table/collection', function () {
+    assert.equal(success, false);
+    assert.equal(error, true);
+  })
+});
+
+describe('failed find query', function () {
+  var success   = false
+    , error     = false
+    , tocName   = 'persons'
+    , condition = ' ?? ';
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.find(condition)
+      .from(tocName)
+      .success(function (rst) {
+        success = true;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should fail due to incorrect condition type', function () {
+    assert.equal(success, false);
+    assert.equal(error, true);
+  })
+});

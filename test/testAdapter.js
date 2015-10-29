@@ -35,7 +35,7 @@ module.exports = (function () {
     }
     
     this.find = function (tocName, condition, callBack, limit, offset) {
-      var data = [
+      var users = [
         {
             id   : 1
           , name : 'khalid'
@@ -47,7 +47,7 @@ module.exports = (function () {
           , age  : 26
         }
       ]
-      if(tocName === 'unknown') {
+      if(tocName != 'user') {
         callBack(new TypeError('table not found'))
       } else {
         if(typeof condition !== 'object') {
@@ -59,7 +59,7 @@ module.exports = (function () {
           if(offset !== undefined && isNaN(Number(offset))) {
             return callBack(new TypeError ("Incorrect offset argument"))
           }
-          var results = data.filter(function (item) {
+          var results = users.filter(function (item) {
             return condition.name && condition.age && item.name == condition.name && item.age == condition.age
               || condition.name && !condition.age && item.name == condition.name
               || !condition.name && condition.age && item.age == condition.age
