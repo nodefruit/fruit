@@ -398,7 +398,7 @@ describe('failed find query', function () {
     var fruit = new Fruit(testAdapter);
     fruit.find(condition)
       .from(tocName)
-      .success(function (rst) {
+      .success(function () {
         success = true;
         done();
       })
@@ -413,3 +413,34 @@ describe('failed find query', function () {
     assert.equal(error, true);
   })
 });
+
+describe('successful update query', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , condition = { name : 'khalid' }
+    , data      = { name : 'Abdullah' };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.update(tocName)
+      .set(data)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should update successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(results.data, data);
+    assert.equal(results.condition, condition);
+    assert.equal(error, test);
+  })
+  
+})

@@ -78,6 +78,32 @@ module.exports = (function () {
     this.findAll = function (tocName, callBack) {
       this.find(tocName, {}, callBack);
     }
+  
+    function update (tocName, data, condition, callBack) {
+      if(typeof data !== 'object') {
+        return callBack(new TypeError('incorrect data'))
+      }
+      if(tocName != 'user') {
+        return callBack(new TypeError('table not found'))
+      }
+      if(typeof condition !== 'object') {
+        return callBack(new TypeError('incorrect data'))
+      }
+      callBack(null, {
+          tocName   : tocName
+        , data      : data
+        , condition : condition
+      });
+    }
+
+    this.update = function (tocName, data, condition, callBack) {
+      update (tocName, data, condition, callBack);
+    }
+
+    this.updateAll = function (tocName, data, condition, callBack) {
+      update (tocName, data, condition, callBack);
+    }
+    
     
   }
   
