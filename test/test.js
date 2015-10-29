@@ -444,3 +444,31 @@ describe('successful update query', function () {
   })
   
 })
+
+describe('successful update query without condition', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , data      = { name : 'Abdullah' };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.update(tocName)
+      .set(data)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should update successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(results.data, data);
+    assert.equal(error, null);
+  })
+  
+})
