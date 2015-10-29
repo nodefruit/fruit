@@ -440,7 +440,7 @@ describe('successful update query', function () {
     assert.equal(results.tocName, tocName);
     assert.equal(results.data, data);
     assert.equal(results.condition, condition);
-    assert.equal(error, test);
+    assert.equal(error, null);
   })
   
 })
