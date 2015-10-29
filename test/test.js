@@ -553,3 +553,27 @@ describe('successful delete query', function () {
     assert.equal(error, null);
   });
 });
+
+describe('successful delete query without condition', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.delete(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should update successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(error, null);
+  });
+});
