@@ -48,26 +48,24 @@ module.exports = (function () {
         }
       ]
       if(tocName != 'user') {
-        callBack(new TypeError('table not found'))
-      } else {
-        if(typeof condition !== 'object') {
-          callBack(new TypeError('incorrect data'))
-        } else {
-          if(limit !== undefined && isNaN(Number(limit))) {
-            return callBack(new TypeError ("Incorrect limit argument"))
-          }
-          if(offset !== undefined && isNaN(Number(offset))) {
-            return callBack(new TypeError ("Incorrect offset argument"))
-          }
-          var results = users.filter(function (item) {
-            return condition.name && condition.age && item.name == condition.name && item.age == condition.age
-              || condition.name && !condition.age && item.name == condition.name
-              || !condition.name && condition.age && item.age == condition.age
-              || JSON.stringify(condition) == '{}'
-          })
-          callBack(null, results.slice(offset, limit && ((offset || 0) + limit)));
-        }
+        return callBack(new TypeError('table not found'))
       }
+      if(typeof condition !== 'object') {
+        return callBack(new TypeError('incorrect data'))
+      }
+      if(limit !== undefined && isNaN(Number(limit))) {
+        return callBack(new TypeError ("Incorrect limit argument"))
+      }
+      if(offset !== undefined && isNaN(Number(offset))) {
+        return callBack(new TypeError ("Incorrect offset argument"))
+      }
+      var results = users.filter(function (item) {
+        return condition.name && condition.age && item.name == condition.name && item.age == condition.age
+          || condition.name && !condition.age && item.name == condition.name
+          || !condition.name && condition.age && item.age == condition.age
+          || JSON.stringify(condition) == '{}'
+      })
+      callBack(null, results.slice(offset, limit && ((offset || 0) + limit)));
     }
     
     this.findOne = function (tocName, condition, callBack) {
