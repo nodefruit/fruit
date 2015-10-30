@@ -605,7 +605,7 @@ describe('unsuccessful delete query due to incorrect condition type', function (
 })
 
 
-describe('unsuccessful deleye query due to inexisting table/collection', function () {
+describe('unsuccessful delete query due to inexisting table/collection', function () {
   var results   = null
     , error     = false
     , tocName   = 'person'
@@ -630,3 +630,55 @@ describe('unsuccessful deleye query due to inexisting table/collection', functio
     assert.equal(error, true);
   });
 });
+
+describe('successful count query', function () {
+  var results   = null
+    , error     = false
+    , tocName   = 'user'
+    , condition = { name : 'khalid' };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.count(tocName)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should count successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(results.condition, condition);
+    assert.equal(error, false);
+  });
+});
+
+describe('successful count query without condition', function () {
+  var results   = null
+    , error     = false
+    , tocName   = 'user';
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.count(tocName)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should count successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(error, false);
+  });
+});
+

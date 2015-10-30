@@ -126,6 +126,18 @@ module.exports = (function () {
       del (tocName, condition, callBack);
     }
     
+    this.count = function (tocName, condition, callBack) {
+      if(tocName != 'user') {
+        return callBack(new TypeError('table not found'))
+      }
+      if(typeof condition !== 'object') {
+        return callBack(new TypeError('incorrect data'))
+      }
+      callBack(null, {
+          tocName   : tocName
+        , condition : condition
+      });
+    }
     
   }
   
