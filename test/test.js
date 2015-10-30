@@ -64,7 +64,7 @@ describe('failed connection' , function () {
 describe('insert into table/collection successfully', function () {
   var results = {}
     , error   = null
-    , tocName = 'users'
+    , tocName = 'user'
     , data    = {
         name  : 'khalid'
       , age   : 26
@@ -94,7 +94,7 @@ describe('insert into table/collection successfully', function () {
 describe('insert many records/documents into table/collection successfully', function () {
   var results = {}
     , error   = null
-    , tocName = 'users'
+    , tocName = 'user'
     , data    = [
       {
           name  : 'khalid'
@@ -131,7 +131,7 @@ describe('insert many records/documents into table/collection successfully', fun
 describe('failed insertion due to incorrect data', function () {
   var results = null
     , error   = null
-    , tocName = 'users'
+    , tocName = 'user'
     , data    = ' ?? ';
   
   beforeEach(function (done) {
@@ -682,3 +682,54 @@ describe('successful count query without condition', function () {
   });
 });
 
+describe('unsuccessful count query due to incorrect condition type', function () {
+  var results   = null
+    , error     = false
+    , tocName   = 'user'
+    , condition = ' *** ';
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.count(tocName)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should count successfully', function () {
+    assert.equal(results, null);
+    assert.equal(error, true);
+  });
+});
+
+describe('unsuccessful count query due to inexisting table/collection', function () {
+  var results   = null
+    , error     = false
+    , tocName   = 'person'
+    , condition = { name : 'khalid' };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.count(tocName)
+      .where(condition)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = true;
+        done();
+      });
+  });
+  
+  it('should count successfully', function () {
+    assert.equal(results, null);
+    assert.equal(error, true);
+  });
+});

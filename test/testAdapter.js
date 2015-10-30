@@ -20,7 +20,7 @@ module.exports = (function () {
     }
     
     this.insert = function (tocName, data, callBack) {
-      if(tocName === 'unknown') {
+      if(tocName !== 'user') {
         callBack(new TypeError('table not found'))
       } else {
         if(typeof data !== 'object') {
