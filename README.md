@@ -6,7 +6,7 @@
 
 - [Introduction](#introduction)
 - [Install](#install)
-- [How does it work?](#how-deos-it-work)
+- [How does it work](#how-deos-it-work)
 - [Contributing](#contributing)
 - [Community](#community)
 
@@ -32,7 +32,7 @@ example :
 $ npm install fruit fruit-mongodb
 ```
 
-## How Does It Work
+## How does it work
 
 First of all you need to require both the fruit module and the adapter, let's use as example fruit-mongodb
 
