@@ -19,7 +19,7 @@ Feel free to [contribute](#contributing) in order to give birth to this awsome p
 
 The Fruit package can't be installed on its own, you need to select one (or many) of the adapters available depending on the database type you are using.
 
-### available adapters
+#### Available adapters
 - [fruit-mongodb](http://npmjs.com/package/fruit-mongodb)
 - [fruit-mysql](http://npmjs.com/package/fruit-mysql)
 - [fruit-postgresql](http://npmjs.com/package/fruit-postgresql)
@@ -32,7 +32,7 @@ example :
 $ npm install fruit fruit-mongodb
 ```
 
-## How does it work
+## How Does It Work
 
 First of all you need to require both the fruit module and the adapter, let's use as example fruit-mongodb
 
@@ -46,7 +46,7 @@ Then you need to instaciate the fruit object
   var fruit = new Fruit(mongodbAdapter);
 ```
 
-### Connection
+#### Connection
 
 To test the connection to the database, you need to pass options as arguments. Those options are the information needed to get connected to the database. You need to check documentation of the adapter of your choice.
 
@@ -64,7 +64,7 @@ You can also specify your options without testing the connection to the database
   var fruit = new Fruit(adapter.config(options));
 ```
 
-### Inserting data
+#### Inserting data
 
 To insert some data, you can use the `.insert()` method:
 
