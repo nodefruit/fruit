@@ -1,6 +1,6 @@
 # Fruit
 
-[Fruit](https://github.com/nodefruit/fruit/raw/master/pres/logo.png)
+![Fruit](https://github.com/nodefruit/fruit/raw/master/pres/logo.png)
 
 ## Table of Contents
 
