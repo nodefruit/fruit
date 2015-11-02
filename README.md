@@ -162,6 +162,34 @@ If you need to find something to update it or delete it, you may need to use the
     });
 ```
 
+You also can specify an offset and a limit :
+
+```javascript
+  var collectionName  = 'users'
+    , condition       = { name: 'Khalid' };
+  
+  fruit.find(condition)
+    .from(collectionName)
+    .offset(5)
+    .limit(10)
+    .success(successCallBack)
+    .error(errorCallBack);
+```
+
+##### `.findOne()`: 
+
+This method is exactly like [`.find()`](#find) but it returns only one model, not an array. The only difference on its usage, is that it can't be combined with offset and limit.
+
+##### `.findAll()`: 
+
+This method, finds all take any condition, it returns all data of a table or collection.
+
+```javascript
+  fruit.findAll('users')
+    .success(successCallBack)
+    .error(errorCallBack);
+```
+
 ## Contributing
 
 All contributions are welcome. Let's get this project to the next level.
