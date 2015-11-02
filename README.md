@@ -135,7 +135,7 @@ The methods are :
 
 examples :
 
-If you need to find something to update it or delete it, you may need to use the methods `.update()` and `.detele()`
+If you need to find something to update it or delete it, you may need to use the methods [`.update()`](#update) and `.detele()`
 
 ```javascript
   // using .save() method
@@ -196,10 +196,39 @@ To count rows fulfilling a condition, you can use the `.count()` method
 
 ```javascript
   fruit.count('users')
-    .where({name : 'Khalid'})
+    .where({ name : 'Khalid' })
     .success(function (count) {
       console.log(count);
     })
+```
+
+#### Updating data
+
+There are two methods to update data, [`.update()`](#update) and [`.updateAll()`](#updateall). The difference between them is that [`.update()`](#update) method, updates only one row, and the [`.updateAll()`](#updateall) updates many.
+On MySQL when you run an update query without condition, you are updating all the rows. Fruit reduces the damage of day dreaming developers. If you need to update many rows, you actually need to type updateAll.
+
+#### `.update()`:
+
+Updating one row :
+
+```javascript
+  fruit.update('users')
+    .set({ age : 30 })
+    .where({ name : 'Khalid' })
+    .success(successCallBack)
+    .error(errorCallBack)
+```
+
+#### `.updateAll()`:
+
+Updating many rows :
+
+```javascript
+  fruit.updateAll('users')
+    .set({ age : 30 })
+    .where({ name : 'Khalid' })
+    .success(successCallBack)
+    .error(errorCallBack)
 ```
 
 ## Contributing
