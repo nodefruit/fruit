@@ -30,6 +30,8 @@ example :
 $ npm install fruit fruit-mongodb
 ```
 
+If you want to install fruit with all the adapters, you may need to take a loot at [fruits](http://npmjs.com/package/fruits) package
+
 ## How does it work
 
 First of all you need to require both the fruit module and the adapter, let's use as example fruit-mongodb
