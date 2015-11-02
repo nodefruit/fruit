@@ -125,13 +125,42 @@ example :
     .error(errorCallBack);
 ```
 
-The data found and passed as argument to the success callBack will be models created using [fishbone](http://npmjs.com/package/fishbone). It has the columns as attributes and useful methods.
+The data found and passed as argument to the success callBack will be an array of models created using [fishbone](http://npmjs.com/package/fishbone). Each model has the columns as attributes and useful methods.
 
 The methods are :
 - `.print()`  : It prints the model as JSON on the console using the package [jsome](http://npmjs.com/package/jsome).
 - `.save()`   : It updates changes made on the model directly to the database. It returns a promise.
 - `.delete()` : It deletes the concerned row from the database. It returns a primise.
 - `.toJSON()` : It converts results to JSON.
+
+examples :
+
+If you need to find something to update it or delete it, you may need to use the methods `.update()` and `.detele()`
+
+```javascript
+  // using .save() method
+  fruit.find({ name : 'Khalid' })
+    .from('users')
+    .success(function (results) {
+      results[0].name; // 'khalid'
+      results[0].age = 30;
+      results[0].save()
+        .success(successCB)
+        .error(errorCB)
+    });
+    
+  // using .delete() method
+  fruit.find({ name : 'Khalid' })
+    .from('users')
+    .success(function (results) {
+      results[0].name; // 'khalid'
+      if(results[0].age == 30) {
+        results[0].delete()
+          .success(successCB)
+          .error(errorCB)
+      }
+    });
+```
 
 ## Contributing
 
