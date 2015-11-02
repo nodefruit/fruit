@@ -4,7 +4,21 @@
 
 - [Introduction](#introduction)
 - [Install](#install)
+  - [Available adapters](#available-adapters)
 - [How does it work](#how-does-it-work)
+  - [Connection](#connection)
+  - [Inserting data](#inserting-data)
+  - [Selecting data](#selecting-data)
+    - [`.find()`](#find)
+    - [`.findOne()`](#findone)
+    - [`.findAll()`](#findall)
+  - [Counting data](#counting-data)
+  - [Updating data](#updating-data)
+    - [`.update()`](#update)
+    - [`.updateAll()`](#updateall)
+  - [Deleting data](#deleting-data)
+    - [`.delete()`](#delete)
+    - [`.deleteAll()`](#deleteall)
 - [Contributing](#contributing)
 - [Community](#community)
 
@@ -296,3 +310,5 @@ If you'd like to chat and discuss this project, you can find us here:
 
 - Mailing list: https://groups.google.com/forum/#!forum/nodefruit
 - [![Join the chat at https://gitter.im/nodefruit/fruit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nodefruit/fruit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
+[back to toc](#table-of-contents)
