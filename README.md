@@ -201,13 +201,21 @@ To count rows fulfilling a condition, you can use the `.count()` method
       console.log(count);
     })
 ```
+To count all the rows on a table, you can call it without `.where()` method
+
+```javascript
+  fruit.count('users')
+    .success(function (count) {
+      console.log(count);
+    })
+```
 
 #### Updating data
 
 There are two methods to update data, [`.update()`](#update) and [`.updateAll()`](#updateall). The difference between them is that [`.update()`](#update) method, updates only one row, and the [`.updateAll()`](#updateall) updates many.
 On MySQL when you run an update query without condition, you are updating all the rows. Fruit reduces the damage of day dreaming developers. If you need to update many rows, you actually need to type updateAll.
 
-#### `.update()`:
+##### `.update()`:
 
 Updating one row :
 
@@ -218,8 +226,16 @@ Updating one row :
     .success(successCallBack)
     .error(errorCallBack)
 ```
+You can also call update without `.where()` method.
 
-#### `.updateAll()`:
+```javascript
+  fruit.update('users')
+    .set({ age : 30 })
+    .success(successCallBack)
+    .error(errorCallBack)
+```
+
+##### `.updateAll()`:
 
 Updating many rows :
 
@@ -230,6 +246,7 @@ Updating many rows :
     .success(successCallBack)
     .error(errorCallBack)
 ```
+You also can use it without `.where()` method.
 
 ## Contributing
 
