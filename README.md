@@ -135,7 +135,7 @@ The methods are :
 
 examples :
 
-If you need to find something to update it or delete it, you may need to use the methods [`.update()`](#update) and `.detele()`
+If you need to find something to update it or delete it, you may need to use the methods [`.update()`](#update) and [`.delete()`](#delete)
 
 ```javascript
   // using .save() method
@@ -242,6 +242,40 @@ Updating many rows :
 ```javascript
   fruit.updateAll('users')
     .set({ age : 30 })
+    .where({ name : 'Khalid' })
+    .success(successCallBack)
+    .error(errorCallBack)
+```
+You also can use it without `.where()` method.
+
+#### Deleting data
+
+There are two methods to delete data, [`.delete()`](#delete) and [`.deleteAll()`](#deleteall). The difference between them is that [`.delete()`](#delete) method, deletes only one row, and the [`.deleteAll()`](#deleteall) deletes many.
+
+##### `.delete()`:
+
+Deleting one row :
+
+```javascript
+  fruit.delete('users')
+    .where({ name : 'Khalid' })
+    .success(successCallBack)
+    .error(errorCallBack)
+```
+You can also call delete without `.where()` method.
+
+```javascript
+  fruit.delete('users')
+    .success(successCallBack)
+    .error(errorCallBack)
+```
+
+##### `.deleteAll()`:
+
+Deleting many rows :
+
+```javascript
+  fruit.deleteAll('users')
     .where({ name : 'Khalid' })
     .success(successCallBack)
     .error(errorCallBack)
