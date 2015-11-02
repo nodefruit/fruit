@@ -1,12 +1,10 @@
-# Fruit
-
 ![Fruit](https://github.com/nodefruit/fruit/raw/master/pres/logo.png)
 
 ## Table of Contents
 
 - [Introduction](#introduction)
 - [Install](#install)
-- [How does it work](#how-deos-it-work)
+- [How does it work](#how-does-it-work)
 - [Contributing](#contributing)
 - [Community](#community)
 
@@ -96,23 +94,49 @@ If the data was successfully inserted, the `results` passed as argument to the `
 
 You can also insert many rows at the same time
 
-```
-  var data = [
-      { name: 'Khalid', age: 26 }
-    , { name: 'Ahmed', age: 29 }
-  ];
+```javascript
+  var collectionName = 'users'
+    , data = [
+        { name: 'Khalid', age: 26 }
+      , { name: 'Ahmed', age: 29 }
+    ];
   
   fruit.insert(data)
+    .into(collectionName)
     .success(successCallBack)
     .error(errorCallBack);
 ```
 
+#### Selecting data
+
+To look for data, you may need to call one of the methods `.find()`, `.findOne()`, `.findAll()`
+
+##### `.find()`: 
+This method allows you to look for data that fullfil the condition specified
+
+example : 
+```javascript
+  var collectionName  = 'users'
+    , condition       = { name: 'Khalid' };
+  
+  fruit.find(condition)
+    .from(collectionName)
+    .success(successCallBack)
+    .error(errorCallBack);
+```
+
+The data found and passed as argument to the success callBack will be models created using [fishbone](http://npmjs.com/package/fishbone). It has the columns as attributes and useful methods.
+
+The methods are :
+- `.print()`  : It prints the model as JSON on the console using the package [jsome](http://npmjs.com/package/jsome).
+- `.save()`   : It updates changes made on the model directly to the database. It returns a promise.
+- `.delete()` : It deletes the concerned row from the database. It returns a primise.
+- `.toJSON()` : It converts results to JSON.
+
 ## Contributing
 
 All contributions are welcome. Let's get this project to the next level.
-
-Significant and valuable contributions will allow you to be part of [Fruit organisation](http://github.com/nodefruit)
-
+Significant and valuable contributions will allow you to be part of [Fruit organisation](http://github.com/nodefruit).
 See the [contribution guide](http://github.com/nodefruit/fruit/blob/master/CONTRIBUTING.md) for more details
 
 ## Community
