@@ -1,5 +1,10 @@
 ![Fruit](https://github.com/nodefruit/fruit/raw/master/pres/logo.png)
 
+[![CI Buimd][build-image]][build-url]
+[![experimental][stability-image]][stability-url]
+[![MIT license][license-img]][license-url]
+[![Gitter][gitter-img]][gitter-url]
+
 ## Table of Contents
 
 - [Introduction](#introduction)
@@ -311,4 +316,14 @@ If you'd like to chat and discuss this project, you can find us here:
 - Mailing list: https://groups.google.com/forum/#!forum/nodefruit
 - [![Join the chat at https://gitter.im/nodefruit/fruit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nodefruit/fruit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-[back to toc](#table-of-contents)
+[Back to toc](#table-of-contents)
+
+
+[build-image]: https://api.travis-ci.org/nodefruit/fruit.svg
+[build-url]: https://github.com/nodefruit/fruit
+[stability-image]: https://img.shields.io/badge/stability-experimental-orange.svg
+[stability-url]: https://github.com/nodefruit/fruit
+[license-img]: https://img.shields.io/badge/license-MIT-green.svg
+[license-url]: https://github.com/nodefruit/fruit/blob/master/LICENSE
+[gitter-img]: https://badges.gitter.im/Join%20Chat.svg
+[gitter-url]: https://gitter.im/nodefruit/fruit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
