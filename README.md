@@ -112,9 +112,9 @@ You can also insert many rows at the same time
 To look for data, you may need to call one of the methods `.find()`, `.findOne()`, `.findAll()`
 
 ##### `.find()`: 
-This method allows you to look for data that fullfil the condition specified
 
-example : 
+This method allows you to look for data that fulfill the condition specified
+
 ```javascript
   var collectionName  = 'users'
     , condition       = { name: 'Khalid' };
@@ -142,7 +142,7 @@ If you need to find something to update it or delete it, you may need to use the
   fruit.find({ name : 'Khalid' })
     .from('users')
     .success(function (results) {
-      results[0].name; // 'khalid'
+      results[0].name; // 'Khalid'
       results[0].age = 30;
       results[0].save()
         .success(successCB)
@@ -153,7 +153,7 @@ If you need to find something to update it or delete it, you may need to use the
   fruit.find({ name : 'Khalid' })
     .from('users')
     .success(function (results) {
-      results[0].name; // 'khalid'
+      results[0].name; // 'Khalid'
       if(results[0].age == 30) {
         results[0].delete()
           .success(successCB)
@@ -188,6 +188,18 @@ This method, finds all take any condition, it returns all data of a table or col
   fruit.findAll('users')
     .success(successCallBack)
     .error(errorCallBack);
+```
+
+#### Counting data
+
+To count rows fulfilling a condition, you can use the `.count()` method
+
+```javascript
+  fruit.count('users')
+    .where({name : 'Khalid'})
+    .success(function (count) {
+      console.log(count);
+    })
 ```
 
 ## Contributing
