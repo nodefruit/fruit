@@ -1,4 +1,4 @@
-![Fruit](https://github.com/nodefruit/fruit/raw/master/pres/logo.png)
+[![Fruit][logo]][repo-link]
 
 [![CI Buimd][build-image]][build-url]
 [![Dependencied][dependencies-image]][dependencies-url]
@@ -30,7 +30,7 @@
 
 ## Introduction
 
-Fruit is a NodeJS ORM for database manipulations. This project is currently in Alpha version, so use it in production at your own risk.
+Fruit is a NodeJS ORM for database manipulations. This project is currently in Alpha version, so using it in production is at your own risk.
 
 Feel free to [contribute](#contributing) to this awesome project.
 
@@ -336,7 +336,8 @@ If you'd like to chat and discuss this project, you can find us here:
 
 [Back to TOC](#table-of-contents)
 
-
+[logo]: https://github.com/nodefruit/fruit/raw/master/pres/logo.png
+[repo-link]: https://github.com/nodefruit/fruit
 [build-image]: https://api.travis-ci.org/nodefruit/fruit.svg
 [build-url]: https://github.com/nodefruit/fruit
 [stability-image]: https://img.shields.io/badge/stability-experimental-orange.svg
