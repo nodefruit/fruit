@@ -331,7 +331,7 @@ See the [contribution guide](http://github.com/nodefruit/fruit/blob/master/CONTR
 
 If you'd like to chat and discuss this project, you can find us here:
 
-- Mailing list: https://groups.google.com/forum/#!forum/nodefruit
+- Mailing list: [https://groups.google.com/forum/#!forum/nodefruit](https://groups.google.com/forum/#!forum/nodefruit)
 - [![Join the chat at https://gitter.im/nodefruit/fruit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nodefruit/fruit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 [Back to TOC](#table-of-contents)

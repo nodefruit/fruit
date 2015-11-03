@@ -1,6 +1,6 @@
 {
   "name": "fruit",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Node ORM you may need!",
   "main": "fruit.js",
   "repository": {
