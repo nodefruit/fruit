@@ -62,7 +62,7 @@ First you need to require both the fruit module and the adapter, for example let
     , adapter = require('fruit-mongodb');
 ```
 
-Then you need to instaciate the fruit object
+Then you need to instantiate the fruit object
 ```javascript
   var fruit = new Fruit(mongodbAdapter);
 ```
