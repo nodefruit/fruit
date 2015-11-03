@@ -29,12 +29,13 @@
 
 ## Introduction
 
-This is a NodeJS ORM for many databases manipulations. This is just an experimental version, once it's tested and well maintained by its community, you can start using it on production. 
-Feel free to [contribute](#contributing) in order to give birth to this awsome project.
+Fruit is a NodeJS ORM for database manipulations. This project is currently in Alpha version, so use it in production at your own risk.
+
+Feel free to [contribute](#contributing) to this awesome project.
 
 ## Install
 
-The Fruit package can't be installed on its own, you need to select one (or many) of the adapters available depending on the database type you are using.
+The Fruit package needs to be installed along with an adapter, you can choose of the available adapters or write your own.
 
 #### Available adapters
 - [fruit-mongodb](http://npmjs.com/package/fruit-mongodb)
@@ -43,17 +44,17 @@ The Fruit package can't be installed on its own, you need to select one (or many
 - ... [Help us by creating other adapters](#contributing)
 
 To use Fruit with mongodb for example, you can install both fruit and fruit-mongodb.
-example :
+
 
 ```bash
 $ npm install fruit fruit-mongodb
 ```
 
-If you want to install fruit with all the adapters, you may need to take a loot at [fruits](http://npmjs.com/package/fruits) package
+If you want to install fruit with all the adapters, you can take a look at [fruits](http://npmjs.com/package/fruits) package
 
 ## How does it work
 
-First of all you need to require both the fruit module and the adapter, let's use as example fruit-mongodb
+First you need to require both the fruit module and the adapter, for example let's use fruit-mongodb
 
 ```javascript
   var Fruit   = require('fruit')
@@ -67,7 +68,7 @@ Then you need to instaciate the fruit object
 
 #### Connection
 
-To test the connection to the database, you need to pass options as arguments. Those options are the information needed to get connected to the database. You need to check documentation of the adapter of your choice.
+To test connection to the database, you need to pass options as arguments. Those options are the information needed to get connected to the database. You need to check documentation for the adapter of your choice.
 
 ```javascript
   fruit.connect(options)
@@ -77,15 +78,15 @@ To test the connection to the database, you need to pass options as arguments. T
 You can also specify your options without testing the connection to the database
 ```javascript
   var fruit = new Fruit(adapter).config(options);
-  
+
   // or you can do this
-  
+
   var fruit = new Fruit(adapter.config(options));
 ```
 
 #### Inserting data
 
-To insert some data, you can use the `.insert()` method:
+To insert data, you can use the `.insert()` method:
 
 ```javascript
   function successCallBack (results) {
@@ -95,12 +96,12 @@ To insert some data, you can use the `.insert()` method:
   function errorCallBack (error) {
     console.log(error);
   }
-  
+
   fruit.insert({ name: 'Khalid', age: 26 })
     .success(successCallBack)
     .error(errorCallBack);
 ```
-If the data was successfully inserted, the `results` passed as argument to the `successCallBack` would be like this:
+If data was successfully inserted, the `results` passed as argument to the `successCallBack` would be like this:
 
 ```javascript
   {
@@ -113,7 +114,7 @@ If the data was successfully inserted, the `results` passed as argument to the `
   }
 ```
 
-You can also insert many rows at the same time
+You can also insert multiple rows at the same time
 
 ```javascript
   var collectionName = 'users'
@@ -121,7 +122,7 @@ You can also insert many rows at the same time
         { name: 'Khalid', age: 26 }
       , { name: 'Ahmed', age: 29 }
     ];
-  
+
   fruit.insert(data)
     .into(collectionName)
     .success(successCallBack)
@@ -130,25 +131,24 @@ You can also insert many rows at the same time
 
 #### Selecting data
 
-To look for data, you may need to call one of the methods `.find()`, `.findOne()`, `.findAll()`
+To filter data, you may need to call one of the methods `.find()`, `.findOne()`, `.findAll()`
 
-##### `.find()`: 
+##### `.find()`:
 
-This method allows you to look for data that fulfill the condition specified
+This method allows you to look for data that fulfills the specified conditions
 
 ```javascript
   var collectionName  = 'users'
     , condition       = { name: 'Khalid' };
-  
+
   fruit.find(condition)
     .from(collectionName)
     .success(successCallBack)
     .error(errorCallBack);
 ```
 
-The data found and passed as argument to the success callBack will be an array of models created using [fishbone](http://npmjs.com/package/fishbone). Each model has the columns as attributes and useful methods.
+The data found and passed as argument to the success callBack will be an array of models created using [fishbone](http://npmjs.com/package/fishbone). Each model has columns as attributes and a number of useful methods.
 
-The methods are :
 - `.print()`  : It prints the model as JSON on the console using the package [jsome](http://npmjs.com/package/jsome).
 - `.save()`   : It updates changes made on the model directly to the database. It returns a promise.
 - `.delete()` : It deletes the concerned row from the database. It returns a primise.
@@ -156,7 +156,7 @@ The methods are :
 
 examples :
 
-If you need to find something to update it or delete it, you may need to use the methods [`.update()`](#update) and [`.delete()`](#delete)
+If you need to update or delete records, you can use [`.update()`](#update) and [`.delete()`](#delete)
 
 ```javascript
   // using .save() method
@@ -169,7 +169,7 @@ If you need to find something to update it or delete it, you may need to use the
         .success(successCB)
         .error(errorCB)
     });
-    
+
   // using .delete() method
   fruit.find({ name : 'Khalid' })
     .from('users')
@@ -188,7 +188,7 @@ You also can specify an offset and a limit :
 ```javascript
   var collectionName  = 'users'
     , condition       = { name: 'Khalid' };
-  
+
   fruit.find(condition)
     .from(collectionName)
     .offset(5)
@@ -197,13 +197,13 @@ You also can specify an offset and a limit :
     .error(errorCallBack);
 ```
 
-##### `.findOne()`: 
+##### `.findOne()`:
 
 This method is exactly like [`.find()`](#find) but it returns only one model, not an array. The only difference on its usage, is that it can't be combined with offset and limit.
 
-##### `.findAll()`: 
+##### `.findAll()`:
 
-This method, finds all take any condition, it returns all data of a table or collection.
+This method doesn't take any filters, it returns all data of a table or a collection.
 
 ```javascript
   fruit.findAll('users')
@@ -222,7 +222,7 @@ To count rows fulfilling a condition, you can use the `.count()` method
       console.log(count);
     })
 ```
-To count all the rows on a table, you can call it without `.where()` method
+To count all the rows of a table, you can call it without adding `.where()` method
 
 ```javascript
   fruit.count('users')
@@ -255,6 +255,17 @@ You can also call update without `.where()` method.
     .success(successCallBack)
     .error(errorCallBack)
 ```
+The arguments passed to the successCallBack would be like this : 
+
+```javascript
+  {
+      result : {
+          success       : true
+        , affectedCount : 1
+        , count         : 1
+      }
+  }
+```
 
 ##### `.updateAll()`:
 
@@ -268,6 +279,8 @@ Updating many rows :
     .error(errorCallBack)
 ```
 You also can use it without `.where()` method.
+
+The argument passed to the successCallBack is similar to the one described for [`.update()`](#update)
 
 #### Deleting data
 
@@ -291,6 +304,8 @@ You can also call delete without `.where()` method.
     .error(errorCallBack)
 ```
 
+The argument passed to the successCallBack is similar to the one described for [`.update()`](#update)
+
 ##### `.deleteAll()`:
 
 Deleting many rows :
@@ -302,6 +317,8 @@ Deleting many rows :
     .error(errorCallBack)
 ```
 You also can use it without `.where()` method.
+
+The argument passed to the successCallBack is similar to the one described for [`.update()`](#update)
 
 ## Contributing
 
