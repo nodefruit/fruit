@@ -1,6 +1,7 @@
 ![Fruit](https://github.com/nodefruit/fruit/raw/master/pres/logo.png)
 
 [![CI Buimd][build-image]][build-url]
+[![Dependencied][dependencies-image]][dependencies-url]
 [![experimental][stability-image]][stability-url]
 [![MIT license][license-img]][license-url]
 [![Gitter][gitter-img]][gitter-url]
@@ -255,7 +256,7 @@ You can also call update without `.where()` method.
     .success(successCallBack)
     .error(errorCallBack)
 ```
-The arguments passed to the successCallBack would be like this : 
+The arguments passed to the successCallBack would be like this :
 
 ```javascript
   {
@@ -342,5 +343,7 @@ If you'd like to chat and discuss this project, you can find us here:
 [stability-url]: https://github.com/nodefruit/fruit
 [license-img]: https://img.shields.io/badge/license-MIT-green.svg
 [license-url]: https://github.com/nodefruit/fruit/blob/master/LICENSE
+[dependencies-image]:https://david-dm.org/nodefruit/fruit.svg
+[dependencies-url]:https://npmjs.com/package/fruit
 [gitter-img]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/nodefruit/fruit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
