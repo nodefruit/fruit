@@ -106,19 +106,23 @@ module.exports = (function () {
     }
     
     this.update = function (tocName) {
+      var _offset;
       return {
         set : function (data) {
           function _update (condition) {
             var deferred = defer();
-            _adapter.update(tocName, data, condition, getResponseHandler(deferred));
+            _adapter.update(tocName, data, condition, getResponseHandler(deferred), _offset);
             return deferred.getPromise();
           }
-          return {
-            where : _update,
+          return obectToReturn = {
+            where   : _update,
+            offset  : function (offset) {
+              _offset = offset; return this;
+            },
             success : function (callBack) {
               return _update({}).success(callBack);
             },
-            error : function (callBack) {
+            error   : function (callBack) {
               return _update({}).error(callBack);
             }
           }
@@ -127,19 +131,26 @@ module.exports = (function () {
     }
     
     this.updateAll = function (tocName) {
+      var _limit, _offset;
       return {
         set : function (data) { 
           function _update (condition) {
             var deferred = defer();
-            _adapter.updateAll(tocName, data, condition, getResponseHandler(deferred));
+            _adapter.updateAll(tocName, data, condition, getResponseHandler(deferred), _limit, _offset);
             return deferred.getPromise();
           }
-          return {
-            where : _update,
+          return obectToReturn = {
+            where   : _update,
+            limit   : function (limit) {
+              _limit = limit; return this;
+            },
+            offset  : function (offset) {
+              _offset = offset; return this;
+            },
             success : function (callBack) {
               return _update({}).success(callBack);
             },
-            error : function (callBack) {
+            error   : function (callBack) {
               return _update({}).error(callBack);
             }
           }
