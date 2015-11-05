@@ -425,6 +425,7 @@ describe('successful update query', function () {
     var fruit = new Fruit(testAdapter);
     fruit.update(tocName)
       .set(data)
+      .offset(5)
       .where(condition)
       .success(function (rst) {
         results = rst;
@@ -440,6 +441,8 @@ describe('successful update query', function () {
     assert.equal(results.tocName, tocName);
     assert.equal(results.data, data);
     assert.equal(results.condition, condition);
+    assert.equal(results.offset, 5);
+    assert.equal(results.limit, 1);
     assert.equal(error, null);
   })
 })
@@ -470,6 +473,37 @@ describe('successful update query without condition', function () {
     assert.equal(error, null);
   })
 })
+
+describe('successful updateAll query with limit and offset', function () {
+  var results   = null
+    , error     = null
+    , tocName   = 'user'
+    , data      = { name : 'Abdullah' };
+  
+  beforeEach(function (done) {
+    var fruit = new Fruit(testAdapter);
+    fruit.updateAll(tocName)
+      .set(data)
+      .limit(10)
+      .offset(50)
+      .success(function (rst) {
+        results = rst;
+        done();
+      })
+      .error(function (err) {
+        error = err;
+        done();
+      });
+  });
+  
+  it('should updateAll successfully', function () {
+    assert.equal(results.tocName, tocName);
+    assert.equal(results.data, data);
+    assert.equal(results.limit, 10);
+    assert.equal(results.offset, 50);
+    assert.equal(error, null);
+  });
+});
 
 describe('unsuccessful update query due to incorrect data', function () {
   var results   = null

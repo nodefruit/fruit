@@ -79,7 +79,7 @@ module.exports = (function () {
       this.find(tocName, {}, callBack);
     }
   
-    function update (tocName, data, condition, callBack) {
+    function update (tocName, data, condition, callBack, limit, offset) {
       if(typeof data !== 'object') {
         return callBack(new TypeError('incorrect data'))
       }
@@ -93,15 +93,17 @@ module.exports = (function () {
           tocName   : tocName
         , data      : data
         , condition : condition
+        , limit     : limit
+        , offset    : offset
       });
     }
 
-    this.update = function (tocName, data, condition, callBack) {
-      update (tocName, data, condition, callBack);
+    this.update = function (tocName, data, condition, callBack, offset) {
+      update (tocName, data, condition, callBack, 1, offset);
     }
 
-    this.updateAll = function (tocName, data, condition, callBack) {
-      update (tocName, data, condition, callBack);
+    this.updateAll = function (tocName, data, condition, callBack, limit, offset) {
+      update (tocName, data, condition, callBack, limit, offset);
     }
     
     
