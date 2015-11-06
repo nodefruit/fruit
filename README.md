@@ -36,7 +36,7 @@ Feel free to [contribute](#contributing) to this awesome project.
 
 ## Install
 
-The Fruit package needs to be installed along with an adapter, you can choose of the available adapters or write your own.
+The Fruit package needs to be installed along with an adapter, you can choose one of the available adapters bellow or write your own.
 
 #### Available adapters
 - [fruit-mongodb](http://npmjs.com/package/fruit-mongodb)
