@@ -99,6 +99,7 @@ To insert data, you can use the `.insert()` method:
   }
 
   fruit.insert({ name: 'Khalid', age: 26 })
+    .into(collectionName)
     .success(successCallBack)
     .error(errorCallBack);
 ```
