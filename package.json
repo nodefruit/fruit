@@ -1,7 +1,7 @@
 {
   "name": "fruit",
-  "version": "1.0.6",
-  "description": "A Node ORM you may need!",
+  "version": "1.0.7",
+  "description": "A Node.JS ORM for both SQL and NoSQL databases",
   "main": "fruit.js",
   "repository": {
     "type": "git",

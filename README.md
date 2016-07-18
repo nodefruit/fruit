@@ -2,7 +2,6 @@
 
 [![CI Buimd][build-image]][build-url]
 [![Dependencied][dependencies-image]][dependencies-url]
-[![experimental][stability-image]][stability-url]
 [![MIT license][license-img]][license-url]
 [![Gitter][gitter-img]][gitter-url]
 
