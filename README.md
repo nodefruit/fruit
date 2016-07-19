@@ -340,7 +340,6 @@ If you'd like to chat and discuss this project, you can find us here:
 [repo-link]: https://github.com/nodefruit/fruit
 [build-image]: https://api.travis-ci.org/nodefruit/fruit.svg
 [build-url]: https://github.com/nodefruit/fruit
-[stability-image]: https://img.shields.io/badge/stability-experimental-orange.svg
 [stability-url]: https://github.com/nodefruit/fruit
 [license-img]: https://img.shields.io/badge/license-MIT-green.svg
 [license-url]: https://github.com/nodefruit/fruit/blob/master/LICENSE
